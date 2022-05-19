@@ -1,0 +1,13 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    rexml (3.2.5)
+
+PLATFORMS
+  x86_64-darwin-21
+
+DEPENDENCIES
+  rexml
+
+BUNDLED WITH
+   2.2.32
