@@ -4,6 +4,8 @@ require 'rexml'
 
 require_relative 'rail_search/connection'
 require_relative 'rail_search/connections'
+require_relative 'rail_search/fare'
+require_relative 'rail_search/fares'
 require_relative 'rail_search/result'
 require_relative 'rail_search/results'
 

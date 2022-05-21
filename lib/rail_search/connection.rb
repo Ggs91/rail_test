@@ -5,18 +5,18 @@ module RailSearch
     attr :start, :finish, :departure_time, :arrival_time
 
     def initialize(raw_connection)
-      elements = raw_connection.elements
+      connection_elements = raw_connection.elements
 
-      @start          = elements['Start'].text
-      @finish         = elements['Finish'].text
-      @departure_time = elements['DepartureTime'].text
-      @arrival_time   = elements['ArrivalTime'].text
+      @start          = connection_elements['Start'].text
+      @finish         = connection_elements['Finish'].text
+      @departure_time = connection_elements['DepartureTime'].text
+      @arrival_time   = connection_elements['ArrivalTime'].text
+      @fares          = Fares.new(connection_elements['Fares'])
       # TODO: @duration, @train_name
-      # TODO: RailSearch::Fares => [RailSearch::Fare, ...]
     end
 
     def inspect
-      { start: @start, finish: @finish, departure_time: @departure_time, arrival_time: @arrival_time }
+      { start: @start, finish: @finish, departure_time: @departure_time, arrival_time: @arrival_time, fares: @fares }
     end
   end
 end
