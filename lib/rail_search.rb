@@ -2,6 +2,7 @@
 
 require 'rexml'
 
+require_relative 'utils/time_utils.rb'
 require_relative 'rail_search/connection'
 require_relative 'rail_search/connections'
 require_relative 'rail_search/fare'
