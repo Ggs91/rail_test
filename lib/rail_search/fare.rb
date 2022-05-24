@@ -2,22 +2,18 @@
 
 module RailSearch
   class Fare
-    attr :name, :currency, :value
+    attr :name, :currency, :price
 
     def initialize(raw_fare)
       fare_elements = raw_fare.elements
 
       @name     = fare_elements['Name'].text
       @currency = fare_elements['//Price/Currency'].text
-      @value    = fare_elements['//Price/Value'].text.to_i
+      @price    = fare_elements['//Price/Value'].text.to_f
     end
 
     def inspect
-      { name: @name, price: price }
-    end
-
-    def price
-      { currency: @currency, value: @value }
+      { name: @name, price: price, currency: @currency }
     end
   end
 end
