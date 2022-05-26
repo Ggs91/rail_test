@@ -1,8 +1,15 @@
 # frozen_string_literal: true
 
+require 'forwardable'
+
 module RailSearch
   class Result
+    extend Forwardable
+
     attr :id, :connections
+
+    def_delegator :@connections, :prices_by_fares
+    def_delegator :@connections, :total_duration
 
     def initialize(raw_result)
       elements = raw_result.elements
