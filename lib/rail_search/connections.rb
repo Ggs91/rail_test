@@ -23,18 +23,34 @@ module RailSearch
       end.compact
     end
 
+    def trains_durations
+      connections.map(&:duration)
+    end
+
+    def total_duration
+      (trains_durations + train_waiting_durations).reduce(:+)
+    end
+
+    def prices_by_fares
+      prices = Hash.new { |h, k| h[k] = 0 }
+
+      connections.map do |connection|
+        connection.fares.group_by(&:name).each { |name, fare| prices[name] += fare.first.price }
+      end
+
+      prices
+    end
+
+    # RENDERING HELPERS
+
     def format_train_waiting_durations
       train_waiting_durations.map do |waiting_duration|
         Utils::TimeUtils.format_in_hours_minutes(waiting_duration)
       end
     end
 
-    def trains_durations
-      connections.map(&:duration)
-    end
-
-    def total_duration
-      Utils::TimeUtils.format_in_hours_minutes((trains_durations + train_waiting_durations).reduce(:+))
+    def format_total_duration
+      Utils::TimeUtils.format_in_hours_minutes(total_duration)
     end
 
     def inspect
