@@ -8,8 +8,8 @@ module RailSearch
       fare_elements = raw_fare.elements
 
       @name     = fare_elements['Name'].text
-      @currency = fare_elements['//Price/Currency'].text
-      @price    = fare_elements['//Price/Value'].text.to_f
+      @currency = fare_elements['Price/Currency'].text
+      @price    = fare_elements['Price/Value'].text.to_f
     end
 
     def inspect
