@@ -7,23 +7,27 @@ module RailSearch
     end
 
     def cheapest
-      cheapests = Hash.new { |h, k| h[k] = [] }
-
-      results.map(&:prices_by_fares).flat_map(&:entries).group_by(&:first).map { |k, v| cheapests[k] = v.map(&:last) }
-
-      cheapests.map { |k, v| cheapests[k] = cheapests[k].min }
-
-      cheapests
+      results.min_by(&:cheapest_price)
     end
 
     def quickest
-      results.map { |result| { result.id => result.total_duration } }.flat_map(&:entries).min_by(&:last)
+      results.min_by(&:total_duration)
     end
 
-    def inspect
-      formatted_quickest = { quickest.first => Utils::TimeUtils.format_in_hours_minutes(quickest.last) }
+    # RENDERING HELPERS
 
-      { results: results.map(&:inspect), cheapest: cheapest, quickest: formatted_quickest }
+    def inspect
+      { results: results.map(&:inspect), cheapest: cheapest, quickest: format_quickest }
+    end
+
+    def format_cheapest
+      { id: cheapest.id, price: cheapest.cheapest_price }
+    end
+
+    def format_quickest
+      formatted_duration = Utils::TimeUtils.format_in_hours_minutes(quickest.total_duration)
+
+      { id: quickest.id, duration: formatted_duration }
     end
 
     private
