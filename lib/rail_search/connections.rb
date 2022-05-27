@@ -28,17 +28,11 @@ module RailSearch
     end
 
     def total_duration
-      (trains_durations + train_waiting_durations).reduce(:+)
+      (trains_durations + train_waiting_durations).sum
     end
 
-    def prices_by_fares
-      prices = Hash.new { |h, k| h[k] = 0 }
-
-      connections.map do |connection|
-        connection.fares.group_by(&:name).each { |name, fare| prices[name] += fare.first.price }
-      end
-
-      prices
+    def cheapest_price
+      connections.sum { |connection| connection.cheapest_fare.price }
     end
 
     # RENDERING HELPERS

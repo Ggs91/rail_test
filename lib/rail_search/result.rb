@@ -8,7 +8,7 @@ module RailSearch
 
     attr :id, :connections
 
-    def_delegator :@connections, :prices_by_fares
+    def_delegator :@connections, :cheapest_price
     def_delegator :@connections, :total_duration
 
     def initialize(raw_result)

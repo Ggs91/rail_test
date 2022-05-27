@@ -6,6 +6,10 @@ module RailSearch
       raw_fares.each_element { |raw_fare| fares << Fare.new(raw_fare) }
     end
 
+    def cheapest
+      fares.min_by(&:price)
+    end
+
     def inspect
       fares.map(&:inspect)
     end

@@ -1,8 +1,14 @@
 # frozen_string_literal: true
 
+require 'forwardable'
+
 module RailSearch
   class Connection
+    extend Forwardable
+
     attr :start, :finish, :departure_time, :arrival_time, :train_name, :fares, :duration
+
+    def_delegator :@fares, :cheapest, :cheapest_fare
 
     def initialize(raw_connection)
       connection_elements = raw_connection.elements
