@@ -5,3 +5,4 @@ gem "rexml"
 
 # Testing
 gem 'rspec'
+gem 'byebug'
