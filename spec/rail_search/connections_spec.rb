@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rexml'
-
 RSpec.describe RailSearch::Connections do
   subject { described_class.new(raw_connections) }
 

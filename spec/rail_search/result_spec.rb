@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'rexml'
-require 'byebug'
-
 RSpec.describe RailSearch::Result do
   subject { described_class.new(raw_result) }
 

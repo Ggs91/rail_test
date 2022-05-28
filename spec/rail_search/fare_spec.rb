@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rexml'
-
 RSpec.describe RailSearch::Fare do
   subject { described_class.new(raw_fare) }
 
