@@ -2,12 +2,14 @@
 
 module RailSearch
   class Connections < Array
+    TERMINAL_CONNECTION = 1
+
     def initialize(raw_connections)
       raw_connections.each_element { |raw_connection| self << Connection.new(raw_connection) }
     end
 
     def train_changes_count
-      connections.count - 1
+      connections.count - TERMINAL_CONNECTION
     end
 
     def train_waiting_durations
@@ -19,7 +21,7 @@ module RailSearch
 
         next if next_train.nil?
 
-        Utils::TimeUtils.duration_in_seconds_between(arrived_train.inspect[:arrival_time], next_train.inspect[:departure_time])
+        Utils::TimeUtils.duration_in_seconds_between(arrived_train.arrival_time, next_train.departure_time)
       end.compact
     end
 
@@ -33,22 +35,6 @@ module RailSearch
 
     def cheapest_price
       connections.sum { |connection| connection.cheapest_fare.price }
-    end
-
-    # RENDERING HELPERS
-
-    def format_train_waiting_durations
-      train_waiting_durations.map do |waiting_duration|
-        Utils::TimeUtils.format_in_hours_minutes(waiting_duration)
-      end
-    end
-
-    def format_total_duration
-      Utils::TimeUtils.format_in_hours_minutes(total_duration)
-    end
-
-    def inspect
-      connections.map(&:inspect)
     end
 
     private

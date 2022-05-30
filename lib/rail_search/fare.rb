@@ -11,9 +11,5 @@ module RailSearch
       @currency = fare_elements['Price/Currency'].text
       @price    = fare_elements['Price/Value'].text.to_f
     end
-
-    def inspect
-      { name: @name, price: price, currency: @currency }
-    end
   end
 end

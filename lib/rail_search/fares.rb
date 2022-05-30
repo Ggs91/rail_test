@@ -10,10 +10,6 @@ module RailSearch
       fares.min_by(&:price)
     end
 
-    def inspect
-      fares.map(&:inspect)
-    end
-
     private
 
     def fares

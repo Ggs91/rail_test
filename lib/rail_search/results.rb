@@ -14,22 +14,6 @@ module RailSearch
       results.min_by(&:total_duration)
     end
 
-    # RENDERING HELPERS
-
-    def inspect
-      { results: results.map(&:inspect), cheapest: cheapest, quickest: format_quickest }
-    end
-
-    def format_cheapest
-      { id: cheapest.id, price: cheapest.cheapest_price }
-    end
-
-    def format_quickest
-      formatted_duration = Utils::TimeUtils.format_in_hours_minutes(quickest.total_duration)
-
-      { id: quickest.id, duration: formatted_duration }
-    end
-
     private
 
     def results
