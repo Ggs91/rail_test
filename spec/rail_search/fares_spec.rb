@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
 RSpec.describe RailSearch::Fares do
+  include_context 'init XML response'
+
   subject { described_class.new(raw_fares) }
-
-  response = File.read('spec/fixtures/search.xml').to_s
-
-  xml = REXML::Document.new(response)
 
   let(:raw_fares) { xml.get_elements('//SearchResult')[0].get_elements('//Connections')[0].get_elements('//Fares')[0] }
 

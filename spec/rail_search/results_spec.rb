@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
 RSpec.describe RailSearch::Results do
+  include_context 'init XML response'
+
   subject { described_class.new(raw_results) }
-
-  response = File.read('spec/fixtures/search.xml').to_s
-
-  xml = REXML::Document.new(response)
 
   let(:raw_results) { xml.get_elements('//SearchResult') }
 
