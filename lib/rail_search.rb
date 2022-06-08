@@ -6,12 +6,12 @@ require 'rexml'
 require_relative 'utils/time_utils.rb'
 
 # Models & Associations
-require_relative 'rail_search/connection'
-require_relative 'rail_search/connections'
-require_relative 'rail_search/fare'
-require_relative 'rail_search/fares'
-require_relative 'rail_search/result'
-require_relative 'rail_search/results'
+require_relative 'rail_search/models/connection'
+require_relative 'rail_search/models/connections'
+require_relative 'rail_search/models/fare'
+require_relative 'rail_search/models/fares'
+require_relative 'rail_search/models/result'
+require_relative 'rail_search/models/results'
 
 # Decorators
 require_relative 'rail_search/decorators/base_decorator.rb'
